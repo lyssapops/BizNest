@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard | BizNest</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+
+    <style>
+
+        *{
+            margin:0;
+            padding:0;
+            box-sizing:border-box;
+            font-family:Arial, Helvetica, sans-serif;
+        }
+
+        body{
+            background:#f5f7fa;
+        }
+
+        .sidebar{
+            position:fixed;
+            left:0;
+            top:0;
+            width:240px;
+            height:100vh;
+            background:#1e293b;
+            color:white;
+            padding:25px;
+        }
+
+        .sidebar h2{
+            margin-bottom:40px;
+            text-align:center;
+        }
+
+        .sidebar a{
+            display:block;
+            color:white;
+            text-decoration:none;
+            padding:15px;
+            margin-bottom:10px;
+            border-radius:8px;
+        }
+
+        .sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:15px;
+    margin-bottom:10px;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.sidebar a:hover{
+    background:#22c55e;
+    transform:translateX(5px);
+}
+
+.sidebar a.active{
+    background:#22c55e;
+    font-weight:bold;
+}
+
+        .main{
+            margin-left:260px;
+            padding:40px;
+        }
+
+        .cards{
+            display:grid;
+            grid-template-columns:repeat(auto-fit, minmax(200px, 1fr));
+            gap:20px;
+            margin-top:30px;
+        }
+
+        .card{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    border-left:5px solid #22c55e;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 15px 30px rgba(0,0,0,.12);
+}
+
+        .card h3{
+            color:#64748b;
+            margin-bottom:10px;
+            font-size:17px;
+        }
+
+        .card p{
+            font-size:34px;
+            font-weight:bold;
+            color:#16a34a;
+        }
+
+        canvas{
+            margin-top:20px;
+        }
+
+        table{
+            width:100%;
+            margin-top:40px;
+            border-collapse:collapse;
+            background:white;
+            box-shadow:0 0 10px rgba(0,0,0,.1);
+        }
+
+        table th,
+        table td{
+            padding:15px;
+            border-bottom:1px solid #ddd;
+            text-align:left;
+        }
+
+        table th{
+            background:#2c7a4b;
+            color:white;
+        }
+
+        .quick-actions{
+    display:flex;
+    gap:15px;
+    flex-wrap:wrap;
+    margin-bottom:30px;
+}
+
+.quick-actions a{
+    background:#22c55e;
+    color:white;
+    text-decoration:none;
+    padding:12px 20px;
+    border-radius:10px;
+    font-weight:bold;
+    transition:.3s;
+}
+
+.quick-actions a:hover{
+    background:#16a34a;
+    transform:translateY(-3px);
+}
+
+    </style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <div style="text-align:center; margin-bottom:35px;">
+
+       <img src="{{ url_for('static', filename='images/logo.png') }}"
+     alt="BizNest Logo"
+     style="
+        width:170px;
+        height:auto;
+        display:block;
+        margin:0 auto 8px auto;
+     ">
+
+<p style="
+    font-size:15px;
+    color:#cbd5e1;
+    margin-top:0;
+">
+    Manage • Grow • Succeed
+</p> 
+
+    </div>
+
+    <a href="/dashboard" class="active">🏠 Dashboard</a>
+    <a href="/customers">👥 Customers</a>
+    <a href="/inventory">📦 Inventory</a>
+    <a href="/sales">💰 Sales</a>
+    <a href="/expenses">💳 Expenses</a>
+    <a href="/reports">📊 Reports</a>
+    <a href="/settings">⚙ Settings</a>
+    <a href="/logout" onclick="alert('Hello'); return false;">🚪 Logout</a>
+</a>
+
+</div>
+
+<div class="main">
+
+    <h1 style="margin-bottom:10px;">
+    Welcome back! 👋
+</h1>
+
+<p style="color:#666; margin-bottom:30px;">
+    Manage customers, inventory, sales, expenses and reports from one powerful dashboard.
+</p>
+
+<div class="quick-actions">
+
+    <a href="/customers">➕ Customer</a>
+
+    <a href="/inventory">📦 Product</a>
+
+    <a href="/sales">💰 Sale</a>
+
+    <a href="/expenses">💳 Expense</a>
+
+</div>
+    <!-- Dashboard Cards -->
+
+    <div class="cards">
+
+
+        <div class="card">
+            <h3>👥 Customers</h3>
+            <p>{{ customer_count }}</p>
+        </div>
+
+
+        <div class="card">
+            <h3>📦 Products</h3>
+            <p>{{ product_count }}</p>
+        </div>
+
+
+        <div class="card">
+            <h3>💰 Sales</h3>
+            <p>{{ sales_count }}</p>
+        </div>
+
+
+        <div class="card">
+            <h3>💳 Expenses</h3>
+            <p>R{{ expense_count }}</p>
+        </div>
+
+
+        <div class="card">
+            <h3>📈 Revenue</h3>
+            <p>R{{ "%.2f"|format(total_revenue) }}</p>
+        </div>
+
+
+        <div class="card">
+            <h3>🏆 Top Product</h3>
+            <p>{{ top_product }}</p>
+        </div>
+
+
+        <div class="card">
+            <h3>⭐ Top Quantity</h3>
+            <p>{{ top_quantity }}</p>
+        </div>
+
+
+    </div>
+
+    <!-- Sales Chart -->
+
+    <div class="card" style="margin-top:30px;">
+
+        <h3>Sales Overview</h3>
+
+        <canvas id="salesChart"></canvas>
+
+    </div>
+
+    <!-- Recent Sales -->
+
+    <table>
+
+        <tr>
+            <th>Recent Activity</th>
+            <th>Status</th>
+        </tr>
+
+
+        {% if recent_sales %}
+
+            {% for sale in recent_sales %}
+
+            <tr>
+
+                <td>
+                    {{ customer_lookup[sale.customer_id] }}
+                    bought
+                    {{ product_lookup[sale.product_id] }}
+                    ({{ sale.quantity }})
+                </td>
+
+
+                <td>
+                    R{{ "%.2f"|format(sale.total_price) }}
+                </td>
+
+            </tr>
+
+            {% endfor %}
+
+
+        {% else %}
+
+            <tr>
+                <td>No recent sales.</td>
+                <td>-</td>
+            </tr>
+
+        {% endif %}
+
+    </table>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<script>
+const ctx = document.getElementById("salesChart");
+
+new Chart(ctx, {
+
+    type: "line",
+    data: {
+        labels: {{ sales_dates | tojson }},
+        datasets: [{
+            label: "Revenue",
+            data: {{ sales_amounts | tojson }},
+            borderColor: "#2c7a4b",
+            backgroundColor: "rgba(44,122,75,0.2)",
+            borderWidth: 2,
+            fill: true,
+            tension: 0.4
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            y: {
+                beginAtZero: true
+            }
+        }
+    }
+});
+</script>
+
+<script>
+function confirmLogout() {
+    return confirm("You are about to log out. Do you wish to continue?");
+}
+</script>
+
+</body>
+</html>

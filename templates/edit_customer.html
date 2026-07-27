@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Customer | BizNest</title>
+
+    <style>
+        body{
+            font-family:Arial, Helvetica, sans-serif;
+            background:#f5f7fa;
+            padding:40px;
+        }
+
+        .container{
+            width:500px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,.1);
+        }
+
+        h2{
+            margin-bottom:20px;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin-bottom:15px;
+            border:1px solid #ccc;
+            border-radius:5px;
+        }
+
+        button{
+            background:#2c7a4b;
+            color:white;
+            border:none;
+            padding:12px 20px;
+            border-radius:5px;
+            cursor:pointer;
+        }
+
+        a{
+            text-decoration:none;
+            color:#2c7a4b;
+        }
+    </style>
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Edit Customer</h2>
+
+<form method="POST">
+
+<input type="text" name="name" value="{{ customer.name }}" required>
+
+<input type="text" name="phone" value="{{ customer.phone }}">
+
+<input type="email" name="email" value="{{ customer.email }}">
+
+<input type="text" name="address" value="{{ customer.address }}">
+
+<button type="submit">Update Customer</button>
+
+</form>
+
+<br>
+
+<a href="/customers">← Back to Customers</a>
+
+</div>
+
+</body>
+</html>

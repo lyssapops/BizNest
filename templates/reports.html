@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Reports | BizNest</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f5f7fa;
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:240px;
+    height:100vh;
+    background:#1e293b;
+    color:white;
+    padding:25px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:15px;
+    margin-bottom:10px;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.sidebar a:hover{
+    background:#22c55e;
+    transform:translateX(5px);
+}
+
+.main{
+    margin-left:260px;
+    padding:40px;
+}
+
+.main h1{
+    margin-bottom:10px;
+}
+
+.main p{
+    color:#666;
+    margin-bottom:30px;
+}
+
+.cards{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+    gap:20px;
+}
+
+.card{
+    background:white;
+    padding:25px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    border-left:5px solid #22c55e;
+    transition:.3s;
+}
+
+.card:hover{
+    transform:translateY(-5px);
+}
+
+.card h3{
+    color:#666;
+    margin-bottom:15px;
+}
+
+.card p{
+    font-size:30px;
+    font-weight:bold;
+    color:#16a34a;
+}
+
+.profit-card{
+    margin-top:35px;
+    background:white;
+    padding:35px;
+    border-radius:15px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.profit-card h2{
+    margin-bottom:20px;
+}
+
+.profit{
+    font-size:42px;
+    font-weight:bold;
+    color:#16a34a;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <div style="text-align:center; margin-bottom:35px;">
+
+        <img src="{{ url_for('static', filename='images/logo.png') }}"
+             alt="BizNest Logo"
+             style="
+                width:160px;
+                height:auto;
+                display:block;
+                margin:0 auto 8px auto;
+             ">
+
+        <p style="font-size:15px; color:#cbd5e1;">
+            Manage • Grow • Succeed
+        </p>
+
+    </div>
+
+<a href="/dashboard">🏠 Dashboard</a>
+<a href="/customers">👥 Customers</a>
+<a href="/inventory">📦 Inventory</a>
+<a href="/sales">💰 Sales</a>
+<a href="/expenses">💳 Expenses</a>
+<a href="/reports">📊 Reports</a>
+<a href="/settings">⚙ Settings</a>
+<a href="/logout">🚪 Logout</a>
+
+</div>
+
+<div class="main">
+
+<h1 style="margin-bottom:10px;">
+    Business Reports 📊
+</h1>
+
+<p style="color:#666; margin-bottom:30px;">
+    View your business performance, sales, expenses and overall profit from one place.
+</p>
+
+<div class="cards">
+
+<div class="card">
+<h3>👥 Total Customers</h3>
+<p>{{ total_customers }}</p>
+</div>
+
+<div class="card">
+<h3>📦 Total Products</h3>
+<p>{{ total_products }}</p>
+</div>
+
+<div class="card">
+<h3>💰 Total Sales</h3>
+<p>R{{ "%.2f"|format(total_sales) }}</p>
+</div>
+
+<div class="card">
+<h3>💳 Total Expenses</h3>
+<p>R{{ "%.2f"|format(total_expenses) }}</p>
+</div>
+
+<div class="card">
+<h3>📈 Net Profit</h3>
+<p>R{{ "%.2f"|format(profit) }}</p>
+</div>
+
+<div class="card">
+<h3>🏆 Best Selling Product</h3>
+<p style="font-size:22px;">
+{{ best_product_name }}
+</p>
+
+<p style="font-size:16px; color:#555;">
+{{ best_product_qty }} sold
+</p>
+</div>
+
+<div class="card">
+<h3>⚠️ Low Stock Products</h3>
+<p>{{ low_stock }}</p>
+</div>
+
+</div>
+
+<div class="profit-card">
+
+<h2>💼 Business Profit Summary</h2>
+
+<p>
+This report provides an overview of your business performance by comparing total revenue with total expenses. Use this summary to monitor profitability and make informed business decisions.
+</p>
+
+<br>
+
+<div class="profit">
+R{{ "%.2f"|format(profit) }}
+</div>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

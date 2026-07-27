@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Settings | BizNest</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+body{
+    background:#f5f7fa;
+}
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100vh;
+    background:#1e293b;
+    color:white;
+    padding:25px;
+}
+
+.sidebar h2{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.sidebar a{
+    display:block;
+    color:white;
+    text-decoration:none;
+    padding:15px;
+    margin-bottom:10px;
+    border-radius:8px;
+    transition:.3s;
+}
+
+.sidebar a:hover{
+    background:#22c55e;
+    transform:translateX(5px);
+}
+
+.sidebar a.active{
+    background:#22c55e;
+    font-weight:bold;
+}
+
+.main{
+    margin-left:280px;
+    padding:40px;
+}
+
+.card{
+    background:white;
+    padding:35px;
+    border-radius:18px;
+    box-shadow:0 8px 20px rgba(0,0,0,.08);
+    border-left:5px solid #22c55e;
+    width:100%;
+    max-width:900px;
+}
+
+.card h2{
+    margin-bottom:25px;
+}
+
+.form-group{
+    margin-bottom:20px;
+}
+
+label{
+    display:block;
+    margin-bottom:8px;
+    font-weight:bold;
+}
+
+input{
+    width:100%;
+    padding:14px;
+    border:1px solid #ccc;
+    border-radius:8px;
+    font-size:16px;
+}
+
+button{
+    margin-top:20px;
+    background:#22c55e;
+    color:white;
+    border:none;
+    padding:14px 30px;
+    border-radius:10px;
+    cursor:pointer;
+    font-size:16px;
+    transition:.3s;
+}
+
+button:hover{
+    background:#16a34a;
+    transform:translateY(-2px);
+}
+
+.note{
+    margin-top:25px;
+    color:#777;
+    font-size:14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<div class="sidebar">
+
+    <div style="text-align:center; margin-bottom:35px;">
+
+        <img src="{{ url_for('static', filename='images/logo.png') }}"
+             alt="BizNest Logo"
+             style="
+                width:160px;
+                height:auto;
+                display:block;
+                margin:0 auto 8px auto;
+             ">
+
+        <p style="font-size:15px; color:#cbd5e1;">
+            Manage • Grow • Succeed
+        </p>
+
+    </div>
+
+<a href="/dashboard">🏠 Dashboard</a>
+<a href="/customers">👥 Customers</a>
+<a href="/inventory">📦 Inventory</a>
+<a href="/sales">💰 Sales</a>
+<a href="/expenses">💳 Expenses</a>
+<a href="/reports">📊 Reports</a>
+<a href="/settings" class="active">⚙ Settings</a>
+<a href="/logout" onclick="return confirmLogout()">🚪 Logout</a>
+
+</div>
+
+<div class="main">
+
+    <h1 style="margin-bottom:10px;">
+        Settings ⚙
+    </h1>
+
+    <p style="color:#666; margin-bottom:30px;">
+        Manage your business information and view application details.
+    </p>
+
+<div class="card">
+
+<h2>Business Settings ⚙</h2>
+
+<div class="form-group">
+<label>Business Name</label>
+<input type="text" placeholder="BizNest">
+</div>
+
+<div class="form-group">
+<label>Owner Name</label>
+<input type="text" placeholder="Enter owner's name">
+</div>
+
+<div class="form-group">
+<label>Business Email</label>
+<input type="email" placeholder="example@email.com">
+</div>
+
+<div class="form-group">
+<label>Business Phone</label>
+<input type="text" placeholder="+27 xx xxx xxxx">
+</div>
+
+<div class="form-group">
+<label>Business Address</label>
+<input type="text" placeholder="Business Address">
+</div>
+
+<hr style="margin:30px 0;">
+
+<h2>Application Information</h2>
+
+<div class="form-group">
+<label>Application</label>
+<input type="text" value="BizNest Business Management System" readonly>
+</div>
+
+<div class="form-group">
+<label>Version</label>
+<input type="text" value="Version 1.0" readonly>
+</div>
+
+<div class="form-group">
+<label>Developer</label>
+<input type="text" value="Alyssa Laing" readonly>
+</div>
+
+<div class="form-group">
+<label>Status</label>
+<input type="text" value="System Online" readonly>
+</div>
+
+<p class="note">
+BizNest Version 1.0
+
+<br><br>
+
+This page displays application information and is reserved for future configuration features.
+</p>
+
+<div style="margin-top:30px; text-align:center; color:#666;">
+
+<p><strong>BizNest</strong></p>
+
+<p>Manage • Grow • Succeed</p>
+
+<p style="margin-top:10px;">
+© 2026 BizNest. All Rights Reserved.
+</p>
+
+</div>
+
+<p class="note">
+This page is for demonstration purposes and showcases future business configuration options.
+</p>
+
+</div>
+
+</div>
+
+</body>
+
+</html>

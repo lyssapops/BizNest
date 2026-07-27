@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Customer | BizNest</title>
+
+    <style>
+        body{
+            font-family:Arial;
+            background:#f5f7fa;
+            padding:40px;
+        }
+
+        .container{
+            width:500px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,.1);
+        }
+
+        h2{
+            margin-bottom:20px;
+        }
+
+        input{
+            width:100%;
+            padding:12px;
+            margin-bottom:15px;
+        }
+
+        button{
+            background:#2c7a4b;
+            color:white;
+            border:none;
+            padding:12px 20px;
+            cursor:pointer;
+        }
+
+        a{
+            text-decoration:none;
+        }
+    </style>
+
+</head>
+
+<body>
+
+<div class="container">
+
+<h2>Add Customer</h2>
+
+<form method="POST">
+
+<input type="text" name="name" placeholder="Full Name" required>
+
+<input type="text" name="phone" placeholder="Phone Number">
+
+<input type="email" name="email" placeholder="Email">
+
+<input type="text" name="address" placeholder="Address">
+
+<button type="submit">Save Customer</button>
+
+</form>
+
+<br>
+
+<a href="/customers">← Back to Customers</a>
+
+</div>
+
+</body>
+</html>
