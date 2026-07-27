@@ -7,3 +7,11 @@ A small business management system for managing customers, inventory, sales and 
 - CSS3
 - JavaScript
 - SQLite
+## Features
+
+- User Registration & Login
+- Customer Management
+- Inventory Management
+- Sales Tracking
+- Expense Tracking
+- Reports Dashboard
